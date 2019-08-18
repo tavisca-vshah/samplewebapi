@@ -5,8 +5,6 @@ pipeline {
 		string(name: 'TEST_FILE_PATH', defaultValue: 'WebApi.Tests/WebApi.Tests.csproj')
 		string(name: 'SOLUTION_FILE_PATH', defaultValue: 'WebApi/WebApi.sln')
 		string(name: 'SOLUTION_NAME', defaultValue: 'WebApi')
-		string(name: 'DOCKER_USERNAME', defaultValue: 'vshahks4578')
-		string(name: 'DOCKER_PASSWORD',defaultValue:'@V49K52A4D@')
 		string(name: 'DOCKER_REPO_NAME',defaultValue:'vshahks4578/webapi')
 		string(name: 'IMAGE_VERSION', defaultValue:'latest')
 	}
@@ -35,16 +33,6 @@ pipeline {
 			}
 		}
 
-      /*  stage('Deploy') {
-            steps {
-                bat '''
-                echo "----------------------------Deploying Project Started-----------------------------"
-                docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%
-                docker push %DOCKER_REPO_NAME%:%IMAGE_VERSION%
-                echo "----------------------------Deploying Project Completed-----------------------------"
-                '''
-            }
-            }*/
             stage('Deploy') {
             	steps {
 
