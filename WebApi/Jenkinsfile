@@ -1,0 +1,32 @@
+pipeline {
+    
+    agent any
+    parameters {
+        string(name: 'SOLUTION_PATH', defaultValue: 'WebApi/WebApi.sln', description: 'Path to the Solution')
+        string(name: 'TEST_PROJECT_PATH', defaultValue: 'WebApi.Tests/WebApi.Tests.csproj', description: 'Path to Tests project')
+        choice(name: "Environment", choices: ["build"],description : 'Select Environment to run')
+    }
+    stages {
+        
+          stage('build') {
+            when {
+                expression {
+                  params.Environment == 'build';
+                }
+            }
+            steps {
+                
+                powershell '''
+                echo "---------------------Build Project Started-----------------------------"
+                dotnet build $ENV:WORKSPACE/$($env:SOLUTION_PATH) -p:Configuration=release -v:n
+                echo "---------------------Build Project Ended-----------------------------" 
+                echo "---------------------Testing Project started-----------------------------"
+                dotnet test $ENV:WORKSPACE/$($env:TEST_PROJECT_PATH)
+                echo "---------------------Testing Project End---------------------------------"
+                 '''
+            }
+         }
+        }
+    }
+        
+
