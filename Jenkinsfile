@@ -7,7 +7,7 @@ pipeline {
 		string(name: 'SOLUTION_NAME', defaultValue: 'WebApi')
 		string(name: 'DOCKER_REPO_NAME',defaultValue:'vshahks4578/webapi')
 		string(name: 'IMAGE_VERSION', defaultValue:'latest')
-		string(name: 'SONAR_PROJECT_TOKEN', defaultValue: 'WebApi/WebApi.sln', description: 'Path to the Solution')
+		string(name: 'SONAR_PROJECT_TOKEN', defaultValue: '', description: 'Path to the Solution')
 	}
 
 	stages {
